@@ -12,7 +12,7 @@ public class MovementFlying : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            rb.velocity += Vector3.up * 10f;
+            rb.velocity += transform.forward * 10f;
         }
     }
 }
