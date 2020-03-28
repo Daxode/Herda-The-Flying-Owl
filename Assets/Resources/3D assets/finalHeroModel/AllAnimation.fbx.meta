@@ -5,13 +5,13 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Take 001
+    second: Grab
   - first:
       74: -5405653242291790180
-    second: Take 001 (1)
+    second: Flap
   - first:
       74: 4854180139978558704
-    second: Take 001 (2)
+    second: Idle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -41,11 +41,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Grab
       takeName: Take 001
       internalID: 0
-      firstFrame: 1
-      lastFrame: 118
+      firstFrame: 0
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -70,11 +70,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Take 001 (1)
+      name: Flap
       takeName: Take 001
       internalID: 0
-      firstFrame: 1
-      lastFrame: 118
+      firstFrame: 51
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -99,10 +99,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Take 001 (2)
+      name: Idle
       takeName: Take 001
       internalID: 0
-      firstFrame: 1
+      firstFrame: 90
       lastFrame: 118
       wrapMode: 0
       orientationOffsetY: 0
@@ -130,7 +130,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -176,7 +176,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
