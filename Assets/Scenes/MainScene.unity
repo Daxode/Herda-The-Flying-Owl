@@ -38,7 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+<<<<<<< Updated upstream
   m_IndirectSpecularColor: {r: 2.5278628, g: 2.3733585, b: 1.9609935, a: 1}
+=======
+  m_IndirectSpecularColor: {r: 2.5280204, g: 2.3734825, b: 1.9619689, a: 1}
+>>>>>>> Stashed changes
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -467,7 +471,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: d9c7ffa046754e8458adc2196a578fa0, type: 2}
   m_StaticLightingSkyUniqueID: 4
+<<<<<<< Updated upstream
   m_SkySettings: {fileID: 1193785923}
+=======
+  m_SkySettings: {fileID: 1056750}
+>>>>>>> Stashed changes
   m_SkySettingsFromProfile: {fileID: -9049304776286152429, guid: d9c7ffa046754e8458adc2196a578fa0,
     type: 2}
 --- !u!4 &310713427
@@ -2745,8 +2753,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lift: 0.01
+<<<<<<< Updated upstream
   drag: 0.01
   wingTorque: 0.01
+=======
+  drag: 0.001
+  wingTorque: 0.1
+>>>>>>> Stashed changes
 --- !u!54 &1809923462
 Rigidbody:
   m_ObjectHideFlags: 0
