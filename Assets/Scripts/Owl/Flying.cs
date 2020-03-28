@@ -17,28 +17,43 @@ public class Flying : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        //rb.velocity = Vector3.zero;
+        //rb.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, rb.velocity, wingTorque, 0f));
+
         float speed = Vector3.Dot(rb.velocity,transform.forward);
         // Lift
         Vector3 liftV = Vector3.up * speed * speed * lift;
         rb.AddRelativeForce(liftV);
         // Drag
-        Vector3 velsqr = new Vector3(Mathf.Pow(rb.velocity.x, 2), Mathf.Pow(rb.velocity.y, 2), Mathf.Pow(rb.velocity.z, 2));
-        Vector3 dragV = -velsqr * drag;
+        Vector3 dragV = - rb.velocity.normalized * Mathf.Pow(rb.velocity.magnitude, 2) * drag;
         rb.AddRelativeForce(dragV);
         //rb.AddRelativeForce(Vector3.back * speed * speed * drag);
-        
+
         //Debug.Log(rb.rotation * Vector3.up +  " " + Physics.gravity);
         //rb.velocity = Physics.gravity - rb.rotation * Physics.gravity;
-        rb.AddRelativeForce(Vector3.forward * 10f);
 
 
-        //rb.AddRelativeTorque(Vector3.right * (Physics.gravity - liftV));
+
+        //rb.AddRelativeTorque(Vector3.right * speed * wingTorque);
+
+        float pitch = 0;
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(rb.velocity * drag);
+            rb.AddRelativeForce(Vector3.forward * 100f);
+            //rb.AddRelativeForce(rb.velocity * drag);
             //rb.velocity += rb.rotation * Vector3.forward * 10f;
         }
+        if (Input.GetKey(KeyCode.W)) {
+            pitch = 5f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            pitch += -5;
+        }
+        //Vector3 lr = transform.forward + rb.rotation * Vector3.up * pitch;
+        //Vector3 lr = new Vector3(0, pit, 1);
+        rb.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, rb.velocity + Vector3.up * pitch, wingTorque, 0f));
     }
 }
