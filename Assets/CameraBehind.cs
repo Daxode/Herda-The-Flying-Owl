@@ -23,12 +23,13 @@ public class CameraBehind : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        storeCamRot.x -= Time.deltaTime * speedRot * Input.GetAxis("Mouse X");
-        storeCamRot.y -= Time.deltaTime * speedRot * Input.GetAxis("Mouse Y") - Time.deltaTime * speedMov * Input.GetAxis("Vertical");
-        storeCamRot.z -= Time.deltaTime * speedMov * Input.GetAxis("Horizontal");
+        //storeCamRot.x -= Time.deltaTime * speedRot * Input.GetAxis("Mouse X");
+        storeCamRot.y = - Time.deltaTime * speedRot * Input.GetAxis("Mouse Y") - Time.deltaTime * speedMov * Input.GetAxis("Vertical");
+        storeCamRot.z = - Time.deltaTime * speedMov * Input.GetAxis("Horizontal") - Time.deltaTime * speedRot * Input.GetAxis("Mouse X");
         radius -= Time.deltaTime * speedScroll * Input.GetAxis("Mouse ScrollWheel");
 
-        target.rotation = Quaternion.Euler(storeCamRot.y, storeCamRot.x, storeCamRot.z);
+        target.rotation *= Quaternion.AngleAxis(storeCamRot.z, Vector3.forward);
+        target.rotation *= Quaternion.AngleAxis(storeCamRot.y, Vector3.right);
 
         transform.position = target.position - target.forward*radius + target.up*2f;
         transform.LookAt(target, target.up);

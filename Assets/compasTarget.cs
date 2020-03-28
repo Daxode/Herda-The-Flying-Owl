@@ -32,7 +32,7 @@ public class compasTarget : MonoBehaviour {
             float angle = Mathf.Deg2Rad * Vector3.Angle(vecDirToTarget, vecPlayerForward);
             if (Vector3.Dot(vecDirToTarget, vecPlayerRight) > 0) angle += Mathf.PI;
 
-            print(angle);
+            //print(angle);
             idk.x = Mathf.Lerp(idk.x, (Mathf.Sin(angle)*250+250)%500, Time.deltaTime * 8f);
             rectT.anchoredPosition = idk;
 
