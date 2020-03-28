@@ -41,16 +41,19 @@ public class Flying : MonoBehaviour
         float pitch = 0;
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.forward * 10f);
+            rb.AddRelativeForce(Vector3.forward * 100f);
             //rb.AddRelativeForce(rb.velocity * drag);
             //rb.velocity += rb.rotation * Vector3.forward * 10f;
-        } else if (Input.GetKey(KeyCode.W)) {
-            pitch = 1;
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.W)) {
+            pitch = 5f;
+        }
+        if (Input.GetKey(KeyCode.S))
         {
-            pitch = -1;
+            pitch += -5;
         }
-        rb.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, rb.velocity, wingTorque, 0f));
+        //Vector3 lr = transform.forward + rb.rotation * Vector3.up * pitch;
+        //Vector3 lr = new Vector3(0, pit, 1);
+        rb.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, rb.velocity + Vector3.up * pitch, wingTorque, 0f));
     }
 }
