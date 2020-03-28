@@ -13,9 +13,6 @@ public class MovementFlying : MonoBehaviour {
             Destroy(this.gameObject);
         } else {
             _instance = this;
-            foreach (var item in FindSceneObjectsOfType(typeof(compasTarget))) {
-                ((compasTarget)item).SetRdyFlag(true);
-            }
         }
     }
 
