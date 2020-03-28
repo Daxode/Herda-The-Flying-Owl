@@ -25,7 +25,7 @@ public class compasMarkers : MonoBehaviour {
             if (Vector3.Dot(vecDirToTarget, vecPlayerRight) > 0) angle += Mathf.PI;
 
             //print(angle);
-            idk.x = Mathf.Lerp(idk.x, (Mathf.Sin(angle)*250+250)%500, Time.deltaTime * 8f);
+            idk.x = Mathf.Lerp(idk.x, (Mathf.Sin(angle)* 300 + 300) % 600, Time.deltaTime * 8f);
             rectT.anchoredPosition = idk;
 
             img.enabled = (angle > Mathf.PI/2f);
