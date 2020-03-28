@@ -24,8 +24,7 @@ public class Flying : MonoBehaviour
         Vector3 liftV = Vector3.up * speed * speed * lift;
         rb.AddRelativeForce(liftV);
         // Drag
-        Vector3 velsqr = new Vector3(Mathf.Pow(rb.velocity.x, 2), Mathf.Pow(rb.velocity.y, 2), Mathf.Pow(rb.velocity.z, 2));
-        Vector3 dragV = -velsqr * drag;
+        Vector3 dragV = - rb.velocity.normalized * Mathf.Pow(rb.velocity.magnitude, 2) * drag;
         rb.AddRelativeForce(dragV);
         //rb.AddRelativeForce(Vector3.back * speed * speed * drag);
         
@@ -34,7 +33,7 @@ public class Flying : MonoBehaviour
         rb.AddRelativeForce(Vector3.forward * 10f);
 
 
-        //rb.AddRelativeTorque(Vector3.right * (Physics.gravity - liftV));
+        rb.AddRelativeTorque(Vector3.right * (Physics.gravity - liftV).magnitude * speed * wingTorque);
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(rb.velocity * drag);
