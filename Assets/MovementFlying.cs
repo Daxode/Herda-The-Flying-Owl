@@ -13,9 +13,6 @@ public class MovementFlying : MonoBehaviour {
             Destroy(this.gameObject);
         } else {
             _instance = this;
-            foreach (var item in FindSceneObjectsOfType(typeof(compasTarget))) {
-                ((compasTarget)item).SetRdyFlag(true);
-            }
         }
     }
 
@@ -27,8 +24,11 @@ public class MovementFlying : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         rb.velocity = Physics.gravity;
-        if (Input.GetKey(KeyCode.Space)) {
-            rb.velocity += transform.forward * 50f + transform.up * 25f;
+        rb.velocity += transform.forward * 50f + transform.up * 5f;
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            rb.velocity += transform.forward * 500f + transform.up * 250f;
+        } else if (Input.GetKey(KeyCode.Space)) {
+            rb.velocity = Physics.gravity * 0.5f;
         }
     }
 }
