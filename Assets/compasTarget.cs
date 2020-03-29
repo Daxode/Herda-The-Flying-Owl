@@ -19,11 +19,11 @@ public class CompasTarget : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (target != null && MovementFlying.Instance != null) {
+        if (target != null && Flying.Instance != null) {
             Vector2 idk = rectT.anchoredPosition;
-            Vector3 vecPlayerForward = Vector3.Scale(MovementFlying.Instance.transform.forward, new Vector3(1, 0, 1));
-            Vector3 vecPlayerRight = Vector3.Scale(MovementFlying.Instance.transform.right, new Vector3(1, 0, 1));
-            Vector3 vecDirToTarget = Vector3.Scale(MovementFlying.Instance.transform.position - target.position, new Vector3(1, 0, 1));
+            Vector3 vecPlayerForward = Vector3.Scale(Flying.Instance.transform.forward, new Vector3(1, 0, 1));
+            Vector3 vecPlayerRight = Vector3.Scale(Flying.Instance.transform.right, new Vector3(1, 0, 1));
+            Vector3 vecDirToTarget = Vector3.Scale(Flying.Instance.transform.position - target.position, new Vector3(1, 0, 1));
 
             float angle = Mathf.Deg2Rad * Vector3.Angle(vecDirToTarget, vecPlayerForward);
             if (Vector3.Dot(vecDirToTarget, vecPlayerRight) > 0) angle += Mathf.PI;
