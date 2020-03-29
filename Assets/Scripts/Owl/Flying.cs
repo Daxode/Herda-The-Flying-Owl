@@ -20,6 +20,8 @@ public class Flying : MonoBehaviour
     private float timeleft = 0f;
 
     public int spaceLeft = 5;
+
+    public Animator anim;
     
 
     //private float clift = 0f;
@@ -42,6 +44,7 @@ public class Flying : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         rb = GetComponent<Rigidbody>();
         cspeed = speed;
     }
@@ -81,6 +84,7 @@ public class Flying : MonoBehaviour
             if (!spacePress) {
                 //rb.AddRelativeForce(transform.forward * spaceForce, ForceMode.Impulse);
                 spaceLeft--;
+                anim.SetTrigger("DoFlap");
                 cspeed = sspeed;
                 timeleft = speedtime;
             }
@@ -89,29 +93,15 @@ public class Flying : MonoBehaviour
             //rb.AddRelativeForce(rb.velocity * drag);
             //rb.velocity += rb.rotation * Vector3.forward * 10f;
             
-        } else {
-            if (timeleft < 0)
-            {
-                spacePress = false;
-                cspeed = speed;
-            }
-            //clift = 0f;
         }
-        if (Input.GetKey(KeyCode.S)) {
-            pitch = 1f;
-        }
-        if (Input.GetKey(KeyCode.W))
+
+        if (timeleft < 0)
         {
-            pitch += -1f;
+            spacePress = false;
+            cspeed = speed;
         }
-        if (Input.GetKey(KeyCode.D))
-        {
-            roll = 1f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            roll += -1f;
-        }
+        pitch = Input.GetAxis("Vertical");
+        roll = Input.GetAxis("Horizontal");
         rb.velocity = rb.rotation * Vector3.forward * cspeed;
         //rb.AddRelativeTorque(Vector3.right * wingTorque * (Vector3.Dot(Vector3.forward, rb.rotation * Vector3.forward)));
 

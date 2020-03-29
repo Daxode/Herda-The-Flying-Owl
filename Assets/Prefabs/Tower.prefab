@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2806072234613826700}
   - component: {fileID: 7813973641665067637}
   - component: {fileID: 3416122309365087478}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Townie
   m_TagString: Pickable
   m_Icon: {fileID: 0}
@@ -123,8 +123,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 3, z: 6}
-  m_Center: {x: 0, y: 1.5, z: 0}
+  m_Size: {x: 7.955986, y: 8.138135, z: 7.955986}
+  m_Center: {x: 0, y: 3.9898953, z: 0.977993}
 --- !u!114 &2816951114489000257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +189,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3607296967497473679}
     m_Modifications:
+    - target: {fileID: -6332325541818405607, guid: 3efa13f5cf034a94c878a15e19019633,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 3efa13f5cf034a94c878a15e19019633,
         type: 3}
       propertyPath: m_Controller
@@ -253,6 +258,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: peasant_mdl
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3efa13f5cf034a94c878a15e19019633,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3efa13f5cf034a94c878a15e19019633, type: 3}

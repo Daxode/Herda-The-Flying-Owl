@@ -12,7 +12,7 @@ public class FlightStatManager : MonoBehaviour {
 
     }
 
-    float tMax = 2f;
+    public float tMax = 5f;
     float t = 1f;
     
     // Update is called once per frame

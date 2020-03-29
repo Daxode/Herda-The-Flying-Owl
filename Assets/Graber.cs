@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Graber : MonoBehaviour {
     Dictionary<int, Pickable> pickers;
@@ -12,16 +13,28 @@ public class Graber : MonoBehaviour {
         pickers = new Dictionary<int, Pickable>();
     }
 
+    public Animator anim;
+
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.E)) {
             if (picked == null) { //Try to pick
+                anim.SetTrigger("DoGrab");
                 if (pickers.Count > 0) {
                     picked = pickers.First().Value.transform;
+
+                    foreach (var col in picked.GetComponents<Collider>()) {
+                        col.enabled = false;
+                    }
+                    
                     Animator anim = picked.GetComponentInChildren<Animator>();
                     if (anim != null) anim.enabled = false;
                 }
             } else {
+                foreach (var col in picked.GetComponents<Collider>()) {
+                    col.enabled = false;
+                }
+
                 Animator anim = picked.GetComponentInChildren<Animator>();
                 if (anim != null) anim.enabled = true;
                 picked = null;
@@ -29,7 +42,8 @@ public class Graber : MonoBehaviour {
         }
 
         if (picked != null) {
-            picked.position = transform.position;
+            picked.position = transform.position - transform.up*2.0f - transform.forward * 0.3f;
+            picked.rotation = transform.rotation;
         }
     }
 
@@ -39,5 +53,11 @@ public class Graber : MonoBehaviour {
 
     public void HandleExitTrigger(Pickable pick) {
         pickers.Remove(pick.GetInstanceID());
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        print("idk" + collision.gameObject.layer);
+        if (collision.gameObject.layer != 9) return;
+        SceneManager.LoadScene("StartScene");
     }
 }

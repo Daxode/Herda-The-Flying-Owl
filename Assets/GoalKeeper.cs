@@ -16,6 +16,7 @@ public class GoalKeeper : MonoBehaviour {
         while (!asyncLoad.isDone) {
             yield return null;
         }
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void OnTriggerEnter(Collider other) {
