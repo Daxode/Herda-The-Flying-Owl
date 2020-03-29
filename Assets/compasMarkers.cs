@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class compasMarkers : MonoBehaviour {
+public class CompasMarkers : MonoBehaviour {
     // Start is called before the first frame update
     RectTransform rectT;
     Image img;
