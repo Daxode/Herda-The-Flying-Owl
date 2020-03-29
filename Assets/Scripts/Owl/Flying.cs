@@ -44,15 +44,15 @@ public class Flying : MonoBehaviour
 
         float speed = Vector3.Dot(rb.velocity,transform.forward);
         // Lift
-        Vector3 liftV = Vector3.up * speed * speed * clift;
-        rb.AddRelativeForce(liftV);
+        //Vector3 liftV = Vector3.up * speed * speed * clift;
+        //rb.AddRelativeForce(liftV);
         // Drag
-        Vector3 dragV = - rb.velocity.normalized * Mathf.Pow(rb.velocity.magnitude, 2) * drag;
-        rb.AddRelativeForce(dragV);
+        //Vector3 dragV = - rb.velocity.normalized * Mathf.Pow(rb.velocity.magnitude, 2) * drag;
+        //rb.AddRelativeForce(dragV);
 
         // Lift
-        rb.AddRelativeForce(Vector3.forward);
-        Debug.Log(transform.forward.y);
+        //rb.AddRelativeForce(Vector3.forward);
+        //Debug.Log(transform.forward.y);
 
         
         //rb.AddRelativeForce(Vector3.back * speed * speed * drag);
@@ -96,6 +96,11 @@ public class Flying : MonoBehaviour
         {
             roll += -1f;
         }
+        rb.AddRelativeTorque(Vector3.right * wingTorque * (Vector3.Dot(Vector3.forward, rb.rotation * Vector3.forward)));
+
+        //rb.velocity += transform.forward * transform.forward.y;
+        //rb.velocity = -(rb.rotation * Vector3.forward) * (rb.rotation * Vector3.forward).y;
+        //rb.velocity += - Vector3.forward * transform.forward.y + Vector3.up * speed * lift + Vector3.forward * speed * drag;
 
         //Vector3 x = Vector3.Cross(transform.forward.normalized, (rb.velocity + transform.up * speed).normalized);
         //float theta = Mathf.Asin(x.magnitude);
@@ -113,10 +118,11 @@ public class Flying : MonoBehaviour
         //);
         // Quaternion.LookRotation(Vector3.RotateTowards(transform.up, Vector3.up + transform.right * roll, wingTorque, 0f)).eulerAngles.z
         //Debug.Log(Quaternion.LookRotation(Vector3.RotateTowards(transform.up, Vector3.up + transform.right * roll, wingTorque, 0f)).eulerAngles);
-        rb.rotation = Quaternion.Lerp(rb.rotation,
-            Quaternion.LookRotation(rb.velocity + transform.up * pitch * speed + transform.right * roll, Vector3.up + transform.right * roll),
-            wingTorque
-        );
+
+        //rb.rotation = Quaternion.Lerp(rb.rotation,
+        //    Quaternion.LookRotation(rb.velocity + transform.up * pitch * speed + transform.right * roll, Vector3.up), //+ transform.right * roll),
+        //    wingTorque
+        //);
 
         //rb.rotation = Quaternion.LookRotation(
         //    Vector3.RotateTowards(transform.forward, rb.velocity + transform.up * pitch * speed + transform.right * roll, wingTorque, 0f)
