@@ -70,12 +70,13 @@ public class Flying : MonoBehaviour
         {
             if (!spacePress) {
                 rb.AddRelativeForce(transform.forward * spaceForce, ForceMode.Impulse);
+                spaceLeft--;
             }
             spacePress = true;
             clift = lift;
             //rb.AddRelativeForce(rb.velocity * drag);
             //rb.velocity += rb.rotation * Vector3.forward * 10f;
-            spaceLeft--;
+            
         } else {
             spacePress = false;
             clift = 0f;
