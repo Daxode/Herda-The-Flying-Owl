@@ -12,6 +12,7 @@ public class ScriptAddTracker : MonoBehaviour {
         Image im = ct.GetComponent<Image>();
 
         im.sprite = showThis;
+        im.preserveAspect = true;
         ct.GetComponent<CompasTarget>().SetTarget(transform);
     }
 
