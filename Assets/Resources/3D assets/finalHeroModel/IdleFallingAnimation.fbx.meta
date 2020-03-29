@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 5c579d054fee6b14a9db0f7058eed520
+guid: 9fe5043c62e7ae54ba08b6b42f520e3c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Grab
+    second: Start Idle Fall
   - first:
-      74: -5405653242291790180
-    second: Flap
+      74: -2885804593631046000
+    second: Idle Fall
   - first:
-      74: 4854180139978558704
-    second: Idle
+      74: 6844520242343635823
+    second: End Idle Fall
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -41,18 +41,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Grab
+      name: Start Idle Fall
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 26.5
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -70,11 +70,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Flap
+      name: Idle Fall
       takeName: Take 001
       internalID: 0
-      firstFrame: 51
-      lastFrame: 70
+      firstFrame: 10
+      lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -82,7 +82,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -99,18 +99,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: End Idle Fall
       takeName: Take 001
       internalID: 0
-      firstFrame: 90
-      lastFrame: 118
+      firstFrame: 56
+      lastFrame: 65
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -177,15 +177,16 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 50
-    rootMotionBoneName: 
+    rootMotionBoneName: owlWizard_Rig_pub:rig_GRP
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: b71c725ad3e72f949b3c3011aa295e0f,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   additionalBone: 0
   userData: 
   assetBundleName: 
