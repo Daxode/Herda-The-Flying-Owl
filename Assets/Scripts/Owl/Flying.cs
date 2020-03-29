@@ -11,6 +11,8 @@ public class Flying : MonoBehaviour
     public float wingTorque = 0.1f;
     public float spaceForce = 100f;
 
+    public int spaceLeft = 5;
+
     private float clift = 0f;
 
     // Start is called before the first frame update
@@ -49,7 +51,7 @@ public class Flying : MonoBehaviour
 
         float pitch = 0;
         float roll = 0;
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && spaceLeft > 0)
         {
             if (!spacePress) {
                 rb.AddRelativeForce(transform.forward * spaceForce, ForceMode.Impulse);
@@ -58,6 +60,7 @@ public class Flying : MonoBehaviour
             clift = lift;
             //rb.AddRelativeForce(rb.velocity * drag);
             //rb.velocity += rb.rotation * Vector3.forward * 10f;
+            spaceLeft--;
         } else {
             spacePress = false;
             clift = 0f;
