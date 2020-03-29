@@ -5,6 +5,22 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class Graber : MonoBehaviour {
+    private static Graber _instance;
+    public static Graber Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
+
     Dictionary<int, Pickable> pickers;
 
     Transform picked = null;
@@ -32,11 +48,12 @@ public class Graber : MonoBehaviour {
                 }
             } else {
                 foreach (var col in picked.GetComponents<Collider>()) {
-                    col.enabled = false;
+                    col.enabled = true;
                 }
 
                 Animator anim = picked.GetComponentInChildren<Animator>();
                 if (anim != null) anim.enabled = true;
+                picked.rotation = Quaternion.identity;
                 picked = null;
             } 
         }
@@ -57,7 +74,7 @@ public class Graber : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         print("idk" + collision.gameObject.layer);
-        if (collision.gameObject.layer != 9) return;
+        if (collision.gameObject.layer != 10) return;
         SceneManager.LoadScene("StartScene");
     }
 }

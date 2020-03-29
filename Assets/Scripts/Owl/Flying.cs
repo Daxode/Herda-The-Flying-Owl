@@ -45,6 +45,7 @@ public class Flying : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         rb = GetComponent<Rigidbody>();
         cspeed = speed;
     }

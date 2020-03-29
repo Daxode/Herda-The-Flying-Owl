@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickable : MonoBehaviour {
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
+        rb.velocity = Physics.gravity;
         if (transform.position.y < -1000) {
+            Graber.Instance.HandleExitTrigger(this);
             Destroy(gameObject);
         }
     }
