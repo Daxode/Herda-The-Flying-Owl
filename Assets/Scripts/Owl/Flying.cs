@@ -15,8 +15,8 @@ public class Flying : MonoBehaviour
 
     private float clift = 0f;
 
-    private static MovementFlying _instance;
-    public static MovementFlying Instance { get { return _instance; } }
+    private static Flying _instance;
+    public static Flying Instance { get { return _instance; } }
 
     private void Awake()
     {
