@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
-        print("debugIn");
+        //print("debugIn");
         Graber grab = other.GetComponent<Graber>();
         grab?.HandleEnterTrigger(this);
     }
 
     private void OnTriggerExit(Collider other){
-        print("debugOut");
+        //print("debugOut");
         Graber grab = other.GetComponent<Graber>();
         grab?.HandleExitTrigger(this);
     }

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3416122309365087478}
   m_Layer: 0
   m_Name: Townie
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,6 +269,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3607296966929403163}
     m_Modifications:
+    - target: {fileID: -4447190541674295956, guid: 4a7b13e03af23a747a8d64311f370b51,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4a7b13e03af23a747a8d64311f370b51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,6 +333,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: tower01
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4a7b13e03af23a747a8d64311f370b51,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a7b13e03af23a747a8d64311f370b51, type: 3}
