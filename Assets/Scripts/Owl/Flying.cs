@@ -6,14 +6,23 @@ public class Flying : MonoBehaviour
 {
     Rigidbody rb;
 
-    public float lift = 1f;
-    public float drag = 1f;
-    public float wingTorque = 0.1f;
-    public float spaceForce = 100f;
+    //public float lift = 1f;
+    //public float drag = 1f;
+    public float pitchT = 50f;
+    public float rollT = 50f;
+    public float rollAmount = 50;
+    public float yawT = 50f;
+    //public float spaceForce = 100f;
+    private float speed = 10f;
+    public float sspeed = 10f;
+    public float cspeed = 10f;
+    public float speedtime = 1f;
+    private float timeleft = 0f;
 
     public int spaceLeft = 5;
+    
 
-    private float clift = 0f;
+    //private float clift = 0f;
 
     private static Flying _instance;
     public static Flying Instance { get { return _instance; } }
@@ -34,6 +43,7 @@ public class Flying : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cspeed = speed;
     }
     bool spacePress = false;
     // Update is called once per frame
@@ -42,7 +52,7 @@ public class Flying : MonoBehaviour
         //rb.velocity = Vector3.zero;
         //rb.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, rb.velocity, wingTorque, 0f));
 
-        float speed = Vector3.Dot(rb.velocity,transform.forward);
+        //float speed = Vector3.Dot(rb.velocity,transform.forward);
         // Lift
         //Vector3 liftV = Vector3.up * speed * speed * clift;
         //rb.AddRelativeForce(liftV);
@@ -54,7 +64,7 @@ public class Flying : MonoBehaviour
         //rb.AddRelativeForce(Vector3.forward);
         //Debug.Log(transform.forward.y);
 
-        
+
         //rb.AddRelativeForce(Vector3.back * speed * speed * drag);
 
         //Debug.Log(rb.rotation * Vector3.up +  " " + Physics.gravity);
@@ -63,30 +73,36 @@ public class Flying : MonoBehaviour
 
 
         //rb.AddRelativeTorque(Vector3.right * speed * wingTorque);
-
+        timeleft -= Time.fixedDeltaTime;
         float pitch = 0;
         float roll = 0;
         if (Input.GetKey(KeyCode.Space) && spaceLeft > 0)
         {
             if (!spacePress) {
-                rb.AddRelativeForce(transform.forward * spaceForce, ForceMode.Impulse);
+                //rb.AddRelativeForce(transform.forward * spaceForce, ForceMode.Impulse);
                 spaceLeft--;
+                cspeed = sspeed;
+                timeleft = speedtime;
             }
             spacePress = true;
-            clift = lift;
+            //clift = lift;
             //rb.AddRelativeForce(rb.velocity * drag);
             //rb.velocity += rb.rotation * Vector3.forward * 10f;
             
         } else {
-            spacePress = false;
-            clift = 0f;
+            if (timeleft < 0)
+            {
+                spacePress = false;
+                cspeed = speed;
+            }
+            //clift = 0f;
         }
         if (Input.GetKey(KeyCode.S)) {
             pitch = 1f;
         }
         if (Input.GetKey(KeyCode.W))
         {
-            pitch += -1;
+            pitch += -1f;
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -96,7 +112,8 @@ public class Flying : MonoBehaviour
         {
             roll += -1f;
         }
-        rb.AddRelativeTorque(Vector3.right * wingTorque * (Vector3.Dot(Vector3.forward, rb.rotation * Vector3.forward)));
+        rb.velocity = rb.rotation * Vector3.forward * cspeed;
+        //rb.AddRelativeTorque(Vector3.right * wingTorque * (Vector3.Dot(Vector3.forward, rb.rotation * Vector3.forward)));
 
         //rb.velocity += transform.forward * transform.forward.y;
         //rb.velocity = -(rb.rotation * Vector3.forward) * (rb.rotation * Vector3.forward).y;
@@ -119,14 +136,36 @@ public class Flying : MonoBehaviour
         // Quaternion.LookRotation(Vector3.RotateTowards(transform.up, Vector3.up + transform.right * roll, wingTorque, 0f)).eulerAngles.z
         //Debug.Log(Quaternion.LookRotation(Vector3.RotateTowards(transform.up, Vector3.up + transform.right * roll, wingTorque, 0f)).eulerAngles);
 
-        //rb.rotation = Quaternion.Lerp(rb.rotation,
-        //    Quaternion.LookRotation(rb.velocity + transform.up * pitch * speed + transform.right * roll, Vector3.up), //+ transform.right * roll),
-        //    wingTorque
-        //);
+        /*rb.rotation = Quaternion.Lerp(rb.rotation,
+            Quaternion.LookRotation(rb.velocity + transform.up * pitch * speed, Vector3.up + transform.right * roll),
+            wingTorque
+        );*/
+
+        /*rb.rotation = Quaternion.Lerp(rb.rotation,
+            Quaternion.Euler(-pitch *pitchT, roll*yawT, -roll*rollT),
+            wingTorque
+        );*/
+
+        /*rb.rotation = Quaternion.Lerp(rb.rotation,
+            Quaternion.AngleAxis(-pitch * pitchT, Vector3.right) * Quaternion.AngleAxis(roll * yawT, Vector3.up) * Quaternion.AngleAxis(-roll * rollT, Vector3.forward),
+            wingTorque
+        );*/
+
+        /*float rollAngle = rb.rotation.eulerAngles.z + roll * rollAmount;//Quaternion.Angle(rb.rotation, Quaternion.AngleAxis(-roll * (rb.rotation.z - rollAmount), Vector3.forward));
+        Quaternion rollQ = Quaternion.AngleAxis(rollT * rollAngle, Vector3.forward);
+        rb.rotation *= Quaternion.AngleAxis(-pitch * pitchT, Vector3.right) 
+                    * Quaternion.AngleAxis(roll * yawT, Vector3.up) 
+                    * rollQ;
+        Debug.Log(rollAngle);*/
+
+        rb.rotation = Quaternion.Lerp(rb.rotation,
+            Quaternion.Euler(rb.rotation.eulerAngles.x + pitchT * pitch, rb.rotation.eulerAngles.y + yawT * roll, -rollAmount * roll),
+        rollT);
 
         //rb.rotation = Quaternion.LookRotation(
         //    Vector3.RotateTowards(transform.forward, rb.velocity + transform.up * pitch * speed + transform.right * roll, wingTorque, 0f)
         //);
+
         //float angle = Vector3.Angle(new Vector3(transform.forward.x, 0, 1), new Vector3(rb.velocity.x, 0, 1));
         //Quaternion newRot = Quaternion.Euler(new Vector3(rb.rotation.eulerAngles.x, rb.rotation.eulerAngles.y, angle));
         //rb.rotation = Quaternion.Lerp(rb.rotation, newRot, wingTorque);
